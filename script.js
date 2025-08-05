@@ -1,35 +1,17 @@
-function showTab(tab) {
-  document.getElementById('new').style.display = tab === 'new' ? 'block' : 'none';
-  document.getElementById('old').style.display = tab === 'old' ? 'block' : 'none';
-  if (tab === 'old') {
-    renderCustomers();
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const errorMessage = document.getElementById('error-message');
+
+  // Tài khoản admin cố định (sau này có thể mở rộng lưu từ localStorage)
+  const adminUser = 'admin';
+  const adminPass = '123456';
+
+  if (username === adminUser && password === adminPass) {
+    localStorage.setItem('loggedIn', 'true');
+    window.location.href = 'home.html'; // sau này là trang chính quản lý phòng khám
+  } else {
+    errorMessage.textContent = 'Sai tên đăng nhập hoặc mật khẩu!';
   }
-}
-
-function addCustomer() {
-  const name = document.getElementById('new-name').value.trim();
-  const phone = document.getElementById('new-phone').value.trim();
-  if (!name || !phone) {
-    alert('Vui lòng nhập đầy đủ thông tin');
-    return;
-  }
-
-  const customers = JSON.parse(localStorage.getItem('customers') || '[]');
-  customers.push({ name, phone, added: new Date().toLocaleString() });
-  localStorage.setItem('customers', JSON.stringify(customers));
-
-  document.getElementById('new-name').value = '';
-  document.getElementById('new-phone').value = '';
-  alert('Đã thêm khách mới!');
-}
-
-function renderCustomers() {
-  const list = document.getElementById('customer-list');
-  list.innerHTML = '';
-  const customers = JSON.parse(localStorage.getItem('customers') || '[]');
-  customers.forEach((c, index) => {
-    const li = document.createElement('li');
-    li.textContent = `${index + 1}. ${c.name} - ${c.phone} (đã thêm lúc: ${c.added})`;
-    list.appendChild(li);
-  });
-}
+});
