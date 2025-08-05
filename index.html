@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý phòng khám</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quản lý Phòng Khám</h1>
+  <div class="tabs">
+    <button onclick="showTab('new')">Khách Mới</button>
+    <button onclick="showTab('old')">Khách Cũ</button>
+  </div>
+
+  <div id="new" class="tab-content">
+    <h2>Thêm Khách Mới</h2>
+    <input type="text" id="new-name" placeholder="Tên khách">
+    <input type="text" id="new-phone" placeholder="SĐT">
+    <button onclick="addCustomer()">Thêm</button>
+  </div>
+
+  <div id="old" class="tab-content" style="display:none">
+    <h2>Danh sách Khách Cũ</h2>
+    <ul id="customer-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
