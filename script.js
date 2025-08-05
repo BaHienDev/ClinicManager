@@ -1,13 +1,15 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const errorMessage = document.getElementById('error-message');
+function login(event) {
+  event.preventDefault(); // ngăn form submit mặc định
+
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMsg = document.getElementById("error-msg");
 
   if (username === "admin" && password === "123456") {
-    localStorage.setItem("loggedIn", "true");
     window.location.href = "home.html";
   } else {
-    errorMessage.textContent = "Sai email hoặc mật khẩu!";
+    errorMsg.textContent = "Sai tài khoản hoặc mật khẩu!";
   }
-});
+
+  return false;
+}
